@@ -178,13 +178,13 @@
   let playing = false; let timeIndex = 0;
 
   // Ajouter les listeners seulement si les boutons existent
-    if (playBtn) {
+    if (playBtn != null) {
         playBtn.addEventListener('click', () => {
             isPlaying = true;
         });
     }
 
-    if (pauseBtn) {
+    if (pauseBtn != null) {
         pauseBtn.addEventListener('click', () => {
             isPlaying = false;
         });
