@@ -86,6 +86,7 @@
   let baseColors = null; // Float32Array n*3 storing base color per neuron (green or red)
 
   function buildSceneFromData(n, Mflat, Aarr, nE, nI){
+    console.log("buildSceneFromData");
     // update globals
     N = n; M = Mflat; A = Aarr; n_E = nE; n_I = nI;
     // compute layout
@@ -305,3 +306,4 @@
 
   // responsive
   window.addEventListener('resize', ()=>{ camera.aspect = innerWidth/innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight); if(points) points.material.uniforms.pointScale.value = window.innerHeight/2; });
+
