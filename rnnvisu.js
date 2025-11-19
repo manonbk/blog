@@ -4,6 +4,7 @@
   // - Inhibitory neurons (last n_I) are red -> brighten to white on activation
   // - Accepts MATLAB .mat saved with: save('my_network.mat', 'M.W', 'M.n_t', 'M.is_AP', 'M.n_E', 'M.n_I')
   // -------------------------------
+ console.log("Script chargé !");
 
   // CONFIG (will be overwritten when loading data)
   let N = 500;          // number of neurons (example) - mutable
@@ -294,3 +295,4 @@
 
   // responsive
   window.addEventListener('resize', ()=>{ camera.aspect = innerWidth/innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight); if(points) points.material.uniforms.pointScale.value = window.innerHeight/2; });
+
