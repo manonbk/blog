@@ -4,7 +4,6 @@
   // - Inhibitory neurons (last n_I) are red -> brighten to white on activation
   // - Accepts MATLAB .mat saved with: save('my_network.mat', 'M.W', 'M.n_t', 'M.is_AP', 'M.n_E', 'M.n_I')
   // -------------------------------
- console.log("Script chargé !");
 
   // CONFIG (will be overwritten when loading data)
   let N = 500;          // number of neurons (example) - mutable
@@ -178,7 +177,18 @@
 
   let playing = false; let timeIndex = 0;
 
-  playBtn.addEventListener('click', ()=> playing=true); pauseBtn.addEventListener('click', ()=> playing=false);
+  // Ajouter les listeners seulement si les boutons existent
+    if (playBtn) {
+        playBtn.addEventListener('click', () => {
+            isPlaying = true;
+        });
+    }
+
+    if (pauseBtn) {
+        pauseBtn.addEventListener('click', () => {
+            isPlaying = false;
+        });
+    }
   timeSlider.addEventListener('input', ()=>{ timeIndex = parseInt(timeSlider.value); updateTargets(); });
   edgeSlider.addEventListener('input', ()=>{ buildEdges(parseFloat(edgeSlider.value)); });
 
@@ -295,4 +305,3 @@
 
   // responsive
   window.addEventListener('resize', ()=>{ camera.aspect = innerWidth/innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight); if(points) points.material.uniforms.pointScale.value = window.innerHeight/2; });
-
