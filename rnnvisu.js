@@ -14,6 +14,11 @@
   let A = null; // array length T of Float32Array(n)
   let n_E = 0, n_I = 0;
 
+  function initNNVis(selector="#nnvis-container"){
+    window.nnvisContainer = selector;
+  }
+
+
 
   // helper: make sample data (keeps behavior if no file loaded)
   function makeSampleData(n, t){
@@ -71,7 +76,8 @@
   const renderer = new THREE.WebGLRenderer({antialias:true});
   renderer.setSize(innerWidth, innerHeight);
   renderer.setPixelRatio(window.devicePixelRatio);
-  document.body.appendChild(renderer.domElement);
+  const container = document.querySelector(window.nnvisContainer || "body");
+  container.appendChild(renderer.domElement);
   renderer.setClearColor(0x252525, 1);
 
   // geometry/material holders
