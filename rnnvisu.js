@@ -6,7 +6,7 @@
   // -------------------------------
 
   // CONFIG (will be overwritten when loading data)
-  let N = 500;          // number of neurons (example) - mutable
+  let N = 501;          // number of neurons (example) - mutable
   let LAYOUT_ITER = 400; // layout iterations
 
   // internal data holders
@@ -72,7 +72,7 @@
   // --- three.js scene setup
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(60, innerWidth/innerHeight, 0.1, 2000);
-  camera.position.set(0,0,500);
+  camera.position.set(0,0,100);
   const renderer = new THREE.WebGLRenderer({antialias:true});
   renderer.setSize(innerWidth, innerHeight);
   renderer.setPixelRatio(window.devicePixelRatio);
@@ -86,7 +86,6 @@
   let baseColors = null; // Float32Array n*3 storing base color per neuron (green or red)
 
   function buildSceneFromData(n, Mflat, Aarr, nE, nI){
-    console.log("buildSceneFromData");
     // update globals
     N = n; M = Mflat; A = Aarr; n_E = nE; n_I = nI;
     // compute layout
@@ -271,7 +270,7 @@
     const dt = (now - last)/1000; last = now;
     if(playing && A){ const s = parseFloat(speedControl.value); const advance = s * dt * 10; timeIndex = Math.min(A.length-1, Math.floor(timeIndex + advance)); if(timeIndex >= A.length-1) playing=false; document.getElementById('time').value = timeIndex; updateTargets(); }
 
-    const lerpK = 6.0 * dt;
+    const lerpK = 15.0 * dt;
     if(points){
       const colors = points.geometry.attributes.customColor.array;
       const sizes = points.geometry.attributes.size.array;
@@ -306,4 +305,3 @@
 
   // responsive
   window.addEventListener('resize', ()=>{ camera.aspect = innerWidth/innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight); if(points) points.material.uniforms.pointScale.value = window.innerHeight/2; });
-
