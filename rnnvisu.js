@@ -76,7 +76,9 @@
   const renderer = new THREE.WebGLRenderer({antialias:true});
   renderer.setSize(innerWidth, innerHeight);
   renderer.setPixelRatio(window.devicePixelRatio);
-  const container = document.querySelector(window.nnvisContainer || "body");
+  const container = window.nnvisContainer instanceof Element
+  ? window.nnvisContainer
+  : document.querySelector(window.nnvisContainer || "body");
   container.appendChild(renderer.domElement);
   renderer.setClearColor(0x252525, 1);
 
@@ -305,4 +307,5 @@
 
   // responsive
   window.addEventListener('resize', ()=>{ camera.aspect = innerWidth/innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight); if(points) points.material.uniforms.pointScale.value = window.innerHeight/2; });
+
 
